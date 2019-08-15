@@ -1,18 +1,30 @@
 # Write your code here.
-
-def badge_maker(name)
-  "Hello, my name is #{name}."
+def badge_maker(speaker)
+  "Hello, my name is #{speaker}."
 end
 
-def batch_badge_creator(attendees)
-  attendees.map {|attendee| badge_maker(attendee)}
+def batch_badge_creator(speakers)
+  badges = []
+  speakers.each do |badge|
+    badges.push(badge_maker(badge))
+  end
+  badges
 end
 
-def assign_rooms(attendees)
-  attendees.each_with_index.map {|attendee,index| "Hello, #{attendee}! You'll be assigned to room #{index+1}!"}
+def assign_rooms(speakers)
+  rooms = []
+  speakers.each_with_index do |speaker,room|
+    rooms.push("Hello, #{speaker}! You'll be assigned to room #{room+1}!")
+  end
+  rooms
 end
 
-def printer(attendees)
-  batch_badge_creator(attendees).each {|x| puts x}
-  assign_rooms(attendees).each {|y| puts y}
+def printer(attendee)
+  num_attendees = attendee.length
+  count = 0
+  while count < num_attendees do
+    puts batch_badge_creator(attendee)[count]
+    puts assign_rooms(attendee)[count]
+    count += 1
+  end
 end
